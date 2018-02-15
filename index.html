@@ -9,28 +9,36 @@
 </head>
 <body>
     <main>
-        <!-- <h1 v-show="conectado">Estoy conectado</h1> -->
-        <h1 v-if="conectado">Estoy conectado</h1>
-        <h2 v-if="edad < 18">No puedes entrar</h2>
-        <h2 v-else-if="edad > 200">Eres inmortal</h2>
-        <h2 v-else>Puedes entrar</h2>
+        <!-- MATRIZ -->
+        <!-- Cuando el modelo es un objeto, un arreglo o una matriz, al ponerlo solo asi, se mostrara la version stringified -->
+        <!-- <h2>{{ laborales }}</h2> -->
 
-        <!-- Para renderizar condicionalmente varios elementos se usa template como contenedor (la etiqueta template no se renderiza) -->
-        <template v-if="conectado">
-            <h3>Bienvenido</h3>
-            <ul>
-                <li>
-                    <a href="#">Mis datos</a>
-                    <a href="#">Mensajes</a>
-                    <a href="#">Salir</a>
-                </li>
-            </ul>
-        </template>
-        <h4 v-else>No estas conectado</h4>
+        <!-- Para renderizar listas se utiliza la directiva v-for="elemento in matriz" -->
+        <!-- elemento es cualquier nombre descriptivo que asignemos, in es palabra reservada, matriz es el modelo -->
+        <!-- <ul>
+            <li v-for="dia in laborales">{{ dia }}</li>
+        </ul> -->
 
-        <pre>
-            {{ $data }}
-        </pre>
+        
+        <!-- MATRIZ DE OBJETOS (collection) -->
+        <!-- Renderizar arreglo de objetos, acceder a las propiedades con el operador de punto -->
+        <!-- <ul>
+            <li v-for="(tarea, index) in tareas">
+                {{index + 1}} {{ tarea.nombre }}
+                <small>( {{tarea.prioridad}} )</small>
+            </li>
+        </ul> -->
+
+
+        <!-- OBJETOS -->
+        <!-- v-for para objetos -->
+        <ul>
+            <li v-for="(value, key, index) in persona">
+                {{ index }} - {{ key }} - {{ value }}
+            </li>
+        </ul>
+
+        <pre>{{ $data }}</pre>
     </main>
 
     <script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
