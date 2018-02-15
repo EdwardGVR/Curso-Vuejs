@@ -9,35 +9,30 @@
 </head>
 <body>
     <main>
-        <!-- MATRIZ -->
-        <!-- Cuando el modelo es un objeto, un arreglo o una matriz, al ponerlo solo asi, se mostrara la version stringified -->
-        <!-- <h2>{{ laborales }}</h2> -->
-
-        <!-- Para renderizar listas se utiliza la directiva v-for="elemento in matriz" -->
-        <!-- elemento es cualquier nombre descriptivo que asignemos, in es palabra reservada, matriz es el modelo -->
-        <!-- <ul>
-            <li v-for="dia in laborales">{{ dia }}</li>
-        </ul> -->
-
-        
-        <!-- MATRIZ DE OBJETOS (collection) -->
-        <!-- Renderizar arreglo de objetos, acceder a las propiedades con el operador de punto -->
-        <!-- <ul>
-            <li v-for="(tarea, index) in tareas">
-                {{index + 1}} {{ tarea.nombre }}
-                <small>( {{tarea.prioridad}} )</small>
-            </li>
-        </ul> -->
-
-
-        <!-- OBJETOS -->
-        <!-- v-for para objetos -->
         <ul>
-            <li v-for="(value, key, index) in persona">
-                {{ index }} - {{ key }} - {{ value }}
+            <li v-for="tarea in tareas">
+                {{ tarea }}
             </li>
         </ul>
 
+        <!-- <input type="text" placeholder="Introduce tu tarea"> -->
+        <!-- <input type="button" value="Enviar tarea" onclick="agregarTarea()"> -->
+
+
+
+        
+        <!-- Con Vue -->
+
+        <!-- <input type="text" placeholder="Introduce tu tarea" v-model="nuevaTarea">
+        <input type="button" value="Enviar tarea" v-on:click="agregarTarea"> -->
+
+        <!-- Dentro de un form -->
+        <!-- Modificador de evento .prevent es equivalente a e.preventDefault() -->
+        <form v-on:submit.prevent="agregarTarea">
+            <input type="text" placeholder="Introduce tu tarea" v-model="nuevaTarea">
+            <input type="submit" value="Enviar tarea">
+        </form>
+        
         <pre>{{ $data }}</pre>
     </main>
 
