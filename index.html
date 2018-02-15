@@ -9,12 +9,26 @@
 </head>
 <body>
     <main>
-        <!-- {{ interpolado }} -> para interpolar -->
-        <h1>{{ mensaje }}</h1>
-        <!-- La directiva v-model asocia el modelo -->
-        <input type="text" v-model="mensaje">
+        <!-- <h1 v-show="conectado">Estoy conectado</h1> -->
+        <h1 v-if="conectado">Estoy conectado</h1>
+        <h2 v-if="edad < 18">No puedes entrar</h2>
+        <h2 v-else-if="edad > 200">Eres inmortal</h2>
+        <h2 v-else>Puedes entrar</h2>
+
+        <!-- Para renderizar condicionalmente varios elementos se usa template como contenedor (la etiqueta template no se renderiza) -->
+        <template v-if="conectado">
+            <h3>Bienvenido</h3>
+            <ul>
+                <li>
+                    <a href="#">Mis datos</a>
+                    <a href="#">Mensajes</a>
+                    <a href="#">Salir</a>
+                </li>
+            </ul>
+        </template>
+        <h4 v-else>No estas conectado</h4>
+
         <pre>
-            <!-- data: para ver el modelo -->
             {{ $data }}
         </pre>
     </main>

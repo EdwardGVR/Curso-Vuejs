@@ -1,19 +1,28 @@
-// Reactividad
+// Directivas incluidas //
+// -- Renderizado condicional -- //
 
-// Vanilla js
-
-// const h1 = document.querySelector('h1'),
-//       input = document.querySelector('input');
-
-// input.addEventListener('keyup', () => h1.innerText = input.value);
+/*
+      v-show                  -> Muestra u oculta (cambiando la propiedad display a none) elementos html, segun el modelo || El elemento sigue estando en el DOM
 
 
+      Paralelismo con las estructuras de control (if, if else, else) de JS
+            v-if="condicion"        -> Muestra o no (Elimina el elemento del DOM <!---->) elementos segun la condicion
+            v-else-if="condicion"   -> Muestra o no (Elimina el elemento del DOM <!---->) el elemento segun la condicion
+            v-else                  -> Muestra o no (Elimina el elemento del DOM <!---->) Si no se han cumplido las condiciones anteriores
 
-// Vue.js
+      Se pueden renderizar condicionalmente varios elementos poniendolos dentro de un template
+            <template>
+                  <></>
+                  <></>
+                  <></>
+            </template>
 
-new Vue ({
-      el: 'main',       // el -> elemento, la etiqueta a partir de la cual tendra scope la instancia
-      data: {           // El modelo, la fuente de datos de la instancia
-            mensaje: 'Hola mundo!!'
-      }
+*/
+
+const vm = new Vue ({
+     el: 'main',
+     data: {
+           conectado: false,
+           edad: 44
+     } 
 });
