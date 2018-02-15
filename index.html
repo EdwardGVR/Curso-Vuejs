@@ -9,9 +9,12 @@
 </head>
 <body>
     <main>
+        <!-- {{ interpolado }} -> para interpolar -->
         <h1>{{ mensaje }}</h1>
+        <!-- La directiva v-model asocia el modelo -->
         <input type="text" v-model="mensaje">
         <pre>
+            <!-- data: para ver el modelo -->
             {{ $data }}
         </pre>
     </main>

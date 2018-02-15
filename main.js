@@ -12,8 +12,8 @@
 // Vue.js
 
 new Vue ({
-      el: 'main',
-      data: {
+      el: 'main',       // el -> elemento, la etiqueta a partir de la cual tendra scope la instancia
+      data: {           // El modelo, la fuente de datos de la instancia
             mensaje: 'Hola mundo!!'
       }
 });
