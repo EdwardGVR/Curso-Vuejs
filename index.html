@@ -9,42 +9,13 @@
 </head>
 <body>
     <main>
-        <!-- <ul>
-            <li v-for="tarea in tareas">
-                {{ tarea }}
-            </li>
-        </ul> -->
-
-        <!-- <input type="text" placeholder="Introduce tu tarea"> -->
-        <!-- <input type="button" value="Enviar tarea" onclick="agregarTarea()"> -->
-
-
-
-        
-        <!-- Con Vue -->
-
-        <!-- <input type="text" placeholder="Introduce tu tarea" v-model="nuevaTarea">
-        <input type="button" value="Enviar tarea" v-on:click="agregarTarea"> -->
-
-        <!-- Dentro de un form -->
-        <!-- Modificador de evento .prevent es equivalente a e.preventDefault() -->
-        <!-- <form v-on:submit.prevent="agregarTarea">
-            <input type="text" placeholder="Introduce tu tarea" v-model="nuevaTarea">
-            <input type="submit" value="Enviar tarea">
-        </form> -->
-        
-
-
-        <!-- Propiedades computadas -->
-        <!-- <h1>{{ mensaje }}</h1> -->
-        <!--<h2>{{ mensajeAlReves }}</h2>--> <!-- Correcto -->
-        <!-- <h2>{{ mensaje.split('').reverse().join('') }}</h2>  Incorrecto -->
-
+        <input type="search" v-model="busqueda" placeholder="Buscar juego">
         <ul>
-            <li v-for="tarea in tareasConPrioridad">
-                {{ tarea.titulo }}
+            <li v-for="juego in buscarJuego">
+                {{ juego.titulo | alReves }}
             </li>
         </ul>
+        <input type="range" min="0" max="10" v-model="minimo">
 
         <pre>{{ $data }}</pre>
     </main>
