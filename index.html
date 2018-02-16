@@ -9,11 +9,11 @@
 </head>
 <body>
     <main>
-        <ul>
+        <!-- <ul>
             <li v-for="tarea in tareas">
                 {{ tarea }}
             </li>
-        </ul>
+        </ul> -->
 
         <!-- <input type="text" placeholder="Introduce tu tarea"> -->
         <!-- <input type="button" value="Enviar tarea" onclick="agregarTarea()"> -->
@@ -28,11 +28,24 @@
 
         <!-- Dentro de un form -->
         <!-- Modificador de evento .prevent es equivalente a e.preventDefault() -->
-        <form v-on:submit.prevent="agregarTarea">
+        <!-- <form v-on:submit.prevent="agregarTarea">
             <input type="text" placeholder="Introduce tu tarea" v-model="nuevaTarea">
             <input type="submit" value="Enviar tarea">
-        </form>
+        </form> -->
         
+
+
+        <!-- Propiedades computadas -->
+        <!-- <h1>{{ mensaje }}</h1> -->
+        <!--<h2>{{ mensajeAlReves }}</h2>--> <!-- Correcto -->
+        <!-- <h2>{{ mensaje.split('').reverse().join('') }}</h2>  Incorrecto -->
+
+        <ul>
+            <li v-for="tarea in tareasConPrioridad">
+                {{ tarea.titulo }}
+            </li>
+        </ul>
+
         <pre>{{ $data }}</pre>
     </main>
 
