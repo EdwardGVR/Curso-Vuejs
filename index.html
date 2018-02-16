@@ -8,15 +8,26 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 <body>
+
     <main>
-        <h1 v-text="mensaje"></h1>
-        <button @click="alReves">Al reves</button>
+        <h1>Tareas</h1>
+        <h2>{{ tareasCompletadas.length }} Completadas</h2>
+        <ul>
+            <!-- v-bind -> vincula un atributo del elemento html con una propiedad del modelo -->
+            <!--v-bind:atributo="{valorDelAtributo: propiedadDelModelo}" -->
+            <!-- shorthand para v-bind es : Ej. :class="{key: value}" -->
+
+            <!-- En este caso vinculamos el atributo class del elemento li, asignandole el valor completado a la clase cuando
+                 la propiedad tarea.completado del modelo sea true -->
+            <li :class="{completado: tarea.completado}"
+                @click="completarTarea(tarea)"
+                v-for="tarea in tareas">
+                {{ tarea.titulo }}
+            </li>
+        </ul>
+
         <pre>{{ $data }}</pre>
     </main>
-
-    <div id="app">
-        <h1>{{ mensaje }}</h1>
-    </div>
 
     <script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
     <script src="main.js"></script>
