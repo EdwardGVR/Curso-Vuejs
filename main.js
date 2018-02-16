@@ -1,48 +1,65 @@
 /*
-Filtros
-      En la version 1 de Vue, se incluian diferentes filtros establecidos para colecciones de datos,
-      actualmente se recomienda crearlas uno mismo como computed properties, sin embargo, es posible usar librerias
-      que brinden las funcionalidades anteriores como underscore o Lodash
+Instancia Vue
+      Es el intermediario entre el DOM y la logica de la aplicacion
+
+      Cuando montamos la instacia Vue, automaticamente se crean getters y setters para las propiedades del modelo qu es lo que hace que sean reactivos.
+            Por lo que si despues de montar la instancia, se le agregan propiedades desde fuera, estas nuevas propiedades no seran reactivas, ya que no 
+            tendran sus respectivos getters y setters
+
+      Se pueden tener varias instancias Vue
+
+
+      *** Ciclo de vida de la instacia Vue ***
+            -     new Vue ()
+            -     beforeCreate
+            -     created
+            -     beforeMount
+            -     mounted
+
+            ---   Cuando cambia el modelo   ---
+
+                        -     beforeUpdate
+                        -     updated
+            
+            -     beforeDestroy
+            -     destroyed
+
+
 */
 
 
-// El filtro debe estar definido antes de la instancia de Vue
-Vue.filter('alReves', (valor) => valor.split('').reverse().join(''));
-
-const vm = new Vue ({
+// Instancia 1
+const vm1 = new Vue ({
       el: 'main',
       data: {
-            busqueda: '',
-            minimo: 5,
-            juegos: [
-                  {
-                     titulo: 'Battlefield 1',
-                     genero: 'FPS',
-                     puntuacion: 9            
-                  },
-                  {
-                     titulo: 'Civilization VI',
-                     genero: 'Estrategia',
-                     puntuacion: 10
-                  },
-                  {
-                     titulo: 'Resident Evil 7',
-                     genero: 'Survival Horror',
-                     puntuacion: 7
-                  },
-                  {
-                     titulo: 'League of Legends',
-                     genero: 'MOBA',
-                     puntuacion: 4
-                  }
-            ]
+            mensaje: 'Instancia Vue 1'
+      },
+      beforeUpdate() {
+            console.log('beforeUpdate', this.mensaje);
+            
+      },
+      updated() {
+            console.log('updated', this.mensaje);
+            
+      },
+      methods: {
+            alReves () {
+                  this.mensaje = this.mensaje.split('').reverse().join('');
+                  // vm2.mensaje = 'Cambiado desde instancia 1';
+            }
       },
       computed: {
-            mejoresJuegos () {
-                  return this.juegos.filter((juego) => juego.puntuacion >= this.minimo);
-            },
-            buscarJuego () {
-                  return this.juegos.filter((juego) => juego.titulo.includes(this.busqueda));
+            mensajeMayusculas () {
+                  return this.mensaje.toUpperCase();
             }
+      }
+});
+
+
+// Instancia 2
+const vm2 = new Vue ({
+      el: '#app',
+      data: {
+            mensaje: 'Instancia Vue 2'
       }
 });

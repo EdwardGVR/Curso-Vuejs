@@ -9,16 +9,14 @@
 </head>
 <body>
     <main>
-        <input type="search" v-model="busqueda" placeholder="Buscar juego">
-        <ul>
-            <li v-for="juego in buscarJuego">
-                {{ juego.titulo | alReves }}
-            </li>
-        </ul>
-        <input type="range" min="0" max="10" v-model="minimo">
-
+        <h1 v-text="mensaje"></h1>
+        <button @click="alReves">Al reves</button>
         <pre>{{ $data }}</pre>
     </main>
+
+    <div id="app">
+        <h1>{{ mensaje }}</h1>
+    </div>
 
     <script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
     <script src="main.js"></script>
