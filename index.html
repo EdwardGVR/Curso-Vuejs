@@ -5,26 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 <body>
 
     <main>
-        <h1>Tareas</h1>
-        <h2>{{ tareasCompletadas.length }} Completadas</h2>
-        <ul>
-            <!-- v-bind -> vincula un atributo del elemento html con una propiedad del modelo -->
-            <!--v-bind:atributo="{valorDelAtributo: propiedadDelModelo}" -->
-            <!-- shorthand para v-bind es : Ej. :class="{key: value}" -->
+        <button @click="mostrar = !mostrar">Mostrar / Ocultar</button>
 
-            <!-- En este caso vinculamos el atributo class del elemento li, asignandole el valor completado a la clase cuando
-                 la propiedad tarea.completado del modelo sea true -->
-            <li :class="{completado: tarea.completado}"
-                @click="completarTarea(tarea)"
-                v-for="tarea in tareas">
-                {{ tarea.titulo }}
-            </li>
-        </ul>
+        <!-- Transition -->
+        <transition name="aparecer" appear>
+            <h1 v-if="mostrar" v-text="mensajes.transicion"></h1>
+        </transition>
+
+        <!-- Animation -->
+        <transition name="bote">
+                <h1 v-if="mostrar" v-text="mensajes.animacion"></h1>
+        </transition>
+
+        <!-- Custom animation (Animate.css) -->
+        <!-- animated [efectoUsado] es propio de la libreria, no de Vue -->
+        <transition 
+            name="animate.css"
+            enter-active-class="animated tada"
+            leave-active-class="animated zoomOutUp"
+        >
+                <h1 v-if="mostrar" v-text="mensajes.animationCustom"></h1>
+        </transition>
+
+        <!-- Transicion entre diferentes elementos -->
+        <transition name="aparecer" modo="out-in">
+                <h1 v-if="mostrar" v-text="mensajes.entreElementos" key="aparecer"></h1>
+                <h1 v-else key="ocultar">No hay mensaje</h1>
+        </transition>
 
         <pre>{{ $data }}</pre>
     </main>
