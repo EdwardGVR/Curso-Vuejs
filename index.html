@@ -11,11 +11,27 @@
 <body>
 
     <main>
-       <ul>
+        <!-- Forma tradicional -->
+       <!-- <ul>
            <li v-for="tarea in tareasAjax" v-text="tarea.title"></li>
-       </ul>
+       </ul> -->
 
-       <pre>{{ $data }}</pre>
+
+       
+       <!-- Componentes -->
+       <!-- <h1>Tareas Ajax</h1>
+       <mis-tareas :tareas="tareasAjax"></mis-tareas>
+
+       <hr>
+       <h1>Tareas locales</h1>
+       <mis-tareas :tareas="tareasLocales"></mis-tareas> -->
+
+       <mi-componente></mi-componente>
+
+       <h1>Las tareas</h1>
+       <mis-tareas></mis-tareas>
+
+       <!-- <pre>{{ $data }}</pre> -->
     </main>
 
     <script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
