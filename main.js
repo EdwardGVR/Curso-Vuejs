@@ -1,38 +1,23 @@
 /*
 
-Utilizar ajax en Vue con axios
-
+Componentes - Introduccion
 
 */
 
-// Para poder cambiar mas facilmente de axios a vue-resource
-Vue.prototype.$http = axios;
-
-new Vue ({
+new Vue = ({
       el: 'main',
-      // Cuando la instancia esta lista
       mounted() {
-            // console.log('Instancia montada');
-            this.cargarPersonas();
-      },
-      data: {
-            personas: []
+            this.cargarTodoList();
       },
       methods: {
-            cargarPersonas () {
-                  // Axios
-                  axios.get('https://randomuser.me/api/?results=500')
-                        .then((respuesta) => {
-                              // console.log(respuesta);
-                              this.personas = respuesta.data.results;
-                        });
-                  
-                  // vue-resource
-                  // this.$http.get('https://randomuser.me/api/?results=500')
-                  //       .then((respuesta) => {
-                  //             // console.log(respuesta);
-                  //             this.personas = respuesta.data.results;
-                  //       });
+            cargarTodoList () {
+                  axios.get('https://jsonplaceholder.typicode.com/todos')
+                  .then((respuesta) => {
+                        this.tareasAjax = respuesta.body;
+                  });
             }
+      },
+      data: {
+            tareasAjax: []
       }
 });
