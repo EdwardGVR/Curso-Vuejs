@@ -1,50 +1,54 @@
 /*
 
-Componentes - Introduccion
+Component templates
 
-Los componentes deben declarar su modelo como una funcion para que sean unicos
+4 formas principales de definirlas:
+      - inline (directamente en la opcion template del componente)      -> template: `<h1>La template</h1>`,
 
+      - Por medio de una etiqueta script en el html                     -> <script type="text/template" id="id-del-template"> <h1>La template</h1> </script>
+
+      - Por medio de la etiqueta template en el html                    -> <template id="id-del-template"> <h1>La template</h1> </template>
+
+      - inline (dentro de la invocacion del componente en el html)      -> <mi-componente inline-template> <h1>La template</h1> </mi-componente>
+            Reduce la reusabilidad                                            -- Al usarse esta forma, no es necesaria la opcion template: ``, en la definicion
+                                                                                 del componente
 */
 
-// Vue.prototype.$http = axios;
+Vue.component('elegir-ganador', {
+      props: ['listado'],
+      // referenciar el template por el id (se define en <script type="text/template" id="id-del-template">EL TEMPLATE VA AQUI</script>)
+      template: `#elegir-ganador-template`,
+      // template:  `<div>
+      //                   <h1 v-if="ganador">El ganador es: {{ ganador }}</h1>
 
-Vue.component('mi-componente', {
-      template: `<h1>Componente Vue</h1>`
-});
-
-Vue.component('mis-tareas', {
-      // props -> Para comunicarse desde fuera con el componente
-      // props: ['tareas'],
-      template: `<ul><li v-for="tarea in tareas" v-text="tarea.title"></li></ul>`,
-      mounted() {
-            axios.get('https://jsonplaceholder.typicode.com/todos')
-            // .then -> cuando tenga la respuesta
-            .then((respuesta) => {
-                  this.tareas = respuesta.data;
-            });
+      //                   <template v-else>
+      //                         <h1>Participantes</h1>
+      //                         <ul>
+      //                               <li v-for="persona in listado">{{ persona }}</li>
+      //                         </ul>
+      //                   </template>
+      //                   <button @click="elegirGanador">Elegir ganador</button>
+      //             </div>`,
+      methods: {
+            elegirGanador () {
+                  let cantidad = this.participantes.length,
+                      indice = Math.floor((Math.random() * cantidad));
+            this.ganador = this.participantes[indice - 1];
+            }
       },
-      data() {
+      data () {
             return {
-                  tareas: [],
+                  ganador: false,
+                  participantes: this.listado
             }
       }
 });
 
 new Vue ({
       el: 'main',
-      // mounted() {
-      //       axios.get('https://jsonplaceholder.typicode.com/todos')
-      //       // .then -> cuando tenga la respuesta
-      //       .then((respuesta) => {
-      //             this.tareasAjax = respuesta.data;
-      //       });
-      // },
-      // data: {
-      //       tareasAjax: [],
-      //       tareasLocales: [
-      //             {title: 'Hacer la compra'},
-      //             {title: 'Aprender Vue'},
-      //             {title: 'Aprender ES6'}
-      //       ]
-      // }
+      data: {
+            personas: [
+                  'Juan', 'Alicia', 'Pedro', 'Javier', 'Marcos'
+            ]
+      }
 });

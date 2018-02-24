@@ -11,32 +11,60 @@
 <body>
 
     <main>
-        <!-- Forma tradicional -->
-       <!-- <ul>
-           <li v-for="tarea in tareasAjax" v-text="tarea.title"></li>
-       </ul> -->
+        <!-- <elegir-ganador :listado="personas"> -->
+        <elegir-ganador :listado="personas" inline-template>
+            <div>
+                <h1 v-if="ganador">El ganador es: {{ ganador }}</h1>
+    
+                <template v-else>
+                        <h1>Participantes</h1>
+                        <ul>
+                            <li v-for="persona in listado">{{ persona }}</li>
+                        </ul>
+                </template>
+                <button @click="elegirGanador">Elegir ganador</button>
+            </div>
+        </elegir-ganador>
 
-
-       
-       <!-- Componentes -->
-       <!-- <h1>Tareas Ajax</h1>
-       <mis-tareas :tareas="tareasAjax"></mis-tareas>
-
-       <hr>
-       <h1>Tareas locales</h1>
-       <mis-tareas :tareas="tareasLocales"></mis-tareas> -->
-
-       <mi-componente></mi-componente>
-
-       <h1>Las tareas</h1>
-       <mis-tareas></mis-tareas>
-
-       <!-- <pre>{{ $data }}</pre> -->
+        <pre>{{ $data }}</pre>
     </main>
 
+
+    <!-- Con script :( -->
+    <!-- El tipo text/template no existe, asi que el navegador lo ignorara, pero estara disponible en el DOM -->
+    <!-- <script type="text/template" id="elegir-ganador-template">
+        <div>
+            <h1 v-if="ganador">El ganador es: {{ ganador }}</h1>
+
+            <template v-else>
+                    <h1>Participantes</h1>
+                    <ul>
+                        <li v-for="persona in listado">{{ persona }}</li>
+                    </ul>
+            </template>
+            <button @click="elegirGanador">Elegir ganador</button>
+        </div>
+    </script> -->
+
+
+
+
+    <!-- Con el tag template (mejor :) -->
+
+    <!-- <template id="elegir-ganador-template"> 
+        <div>
+            <h1 v-if="ganador">El ganador es: {{ ganador }}</h1>
+
+            <template v-else>
+                    <h1>Participantes</h1>
+                    <ul>
+                        <li v-for="persona in listado">{{ persona }}</li>
+                    </ul>
+            </template>
+            <button @click="elegirGanador">Elegir ganador</button>
+        </div>
+    </template> -->
     <script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
-    <!-- axios -> para utilizar Ajax con Vue -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
